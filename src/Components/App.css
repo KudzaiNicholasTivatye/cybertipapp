@@ -30,8 +30,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 50%, rgba(117, 107, 141, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(82, 130, 143, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(42, 3, 133, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(39, 55, 118, 0.1) 0%, transparent 50%);
   animation: bgPulse 10s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -581,5 +581,225 @@ body {
   .user-email {
     max-width: 120px;
     font-size: 12px;
+  }
+}
+
+/* ===== TOP NAVIGATION BAR ===== */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-logo {
+  color: #00eaff;
+  filter: drop-shadow(0 0 8px rgba(0, 234, 255, 0.6));
+  animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(0, 234, 255, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(0, 234, 255, 0.9));
+  }
+}
+
+.navbar-brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Welcome Message */
+.welcome-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 234, 255, 0.05);
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.welcome-message svg {
+  color: #00eaff;
+}
+
+.welcome-message strong {
+  color: #00eaff;
+  font-weight: 600;
+}
+
+
+/* ===== LOGOUT BUTTON - TOP RIGHT ===== */
+.logout-button {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(239, 68, 68, 0.4);
+  border-radius: 50px;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logout-button:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+.logout-button svg {
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover svg {
+  transform: rotate(-15deg);
+}
+
+/* ===== WELCOME SECTION - UNDER HEADER ===== */
+.welcome-section {
+  margin-top: 20px;
+  padding: 16px 24px;
+  background: rgba(0, 234, 255, 0.05);
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  border-radius: 12px;
+  display: inline-block;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-text {
+  font-size: 16px;
+  color: #cbd5e1;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.user-name {
+  font-weight: 700;
+  background: linear-gradient(135deg, #00eaff 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+/* Update app-header spacing */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .logout-button {
+    top: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .welcome-section {
+    margin-top: 16px;
+    padding: 12px 20px;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .user-name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logout-button {
+    top: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .logout-button span {
+    display: none;
+  }
+
+  .logout-button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .welcome-section {
+    margin-top: 12px;
+    padding: 10px 16px;
+  }
+
+  .welcome-text {
+    font-size: 13px;
+  }
+
+  .user-name {
+    font-size: 15px;
   }
 }

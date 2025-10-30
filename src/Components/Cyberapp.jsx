@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../Contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
 import './App.css';
 
 function Cyberapp() {
@@ -7,12 +10,32 @@ function Cyberapp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
   // Fetch daily tip on mount
   useEffect(() => {
     fetchDailyTip();
   }, []);
+
+  // Handle Sign Out
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/auth');
+  };
+
+  // Get user display name
+  const getUserDisplayName = () => {
+    if (user?.user_metadata?.full_name) {
+      return user.user_metadata.full_name;
+    }
+    if (user?.email) {
+      return user.email.split('@')[0];
+    }
+    return 'User';
+  };
 
   // Normalize API response
   const normalizeTipData = (data) => {
@@ -91,10 +114,21 @@ function Cyberapp() {
       <div className="glow-orb glow-orb-1"></div>
       <div className="glow-orb glow-orb-2"></div>
 
+      {/* Logout Button - Top Right */}
+      <button onClick={handleSignOut} className="logout-button">
+        <LogOut size={18} />
+        <span>Logout</span>
+      </button>
+
       <div className="content-wrapper">
         <header className="app-header">
           <h1 className="app-title">🛡️ Daily Cyber Tip App</h1>
           <p className="app-subtitle">Your daily dose of cybersecurity wisdom</p>
+          
+          {/* Welcome Message - Under Header */}
+          <div className="welcome-section">
+            <p className="welcome-text">Welcome back, <span className="user-name">{getUserDisplayName()}</span></p>
+          </div>
         </header>
 
         <div className="input-section">

@@ -185,7 +185,7 @@ const CyberTipAuth = () => {
         <div className="brand-header">
           <div className="logo-container">
             <Shield className="logo-icon" size={40} />
-            <h1 className="brand-name">CyberTip</h1>
+            <h1 className="brand-name">Cyber Tip App</h1>
           </div>
           <p className="brand-tagline">
             {isSignIn ? 'Welcome back to secure learning' : 'Start your cybersecurity journey'}
