@@ -1,8 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./Contexts/AuthContext";
-import Authentication from "./Components/Authentication";
-import Cyberapp from "./Components/Cyberapp";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../Contexts/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -52,33 +50,4 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-const App = () => {
-  return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Authentication Route */}
-          <Route path="/auth" element={<Authentication />} />
-          
-          {/* Protected Route - Main App */}
-          <Route 
-            path="/app" 
-            element={
-              <ProtectedRoute>
-                <Cyberapp />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* Default Route - Redirect to Auth */}
-          <Route path="/" element={<Navigate to="/auth" replace />} />
-          
-          {/* Catch All Routes */}
-          <Route path="*" element={<Navigate to="/auth" replace />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  );
-};
-
-export default App;
+export default ProtectedRoute;
